@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:movie_db/config/http/api_interface.dart';
 
-class DioApiService implements ApiInterface {
-  DioApiService(this._dio);
+class DioClient implements ApiInterface {
+  DioClient();
 
-  final Dio _dio;
+  final Dio dio = Dio();
 
   @override
   Future<Response<T>> get<T>(
@@ -12,11 +12,7 @@ class DioApiService implements ApiInterface {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) {
-    return _dio.get<T>(
-      path,
-      queryParameters: queryParameters,
-      options: options,
-    );
+    return dio.get<T>(path, queryParameters: queryParameters, options: options);
   }
 
   @override
@@ -26,7 +22,7 @@ class DioApiService implements ApiInterface {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) {
-    return _dio.post<T>(
+    return dio.post<T>(
       path,
       data: data,
       queryParameters: queryParameters,
@@ -41,7 +37,7 @@ class DioApiService implements ApiInterface {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) {
-    return _dio.put<T>(
+    return dio.put<T>(
       path,
       data: data,
       queryParameters: queryParameters,
@@ -56,7 +52,7 @@ class DioApiService implements ApiInterface {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) {
-    return _dio.patch<T>(
+    return dio.patch<T>(
       path,
       data: data,
       queryParameters: queryParameters,
@@ -71,7 +67,7 @@ class DioApiService implements ApiInterface {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) {
-    return _dio.delete<T>(
+    return dio.delete<T>(
       path,
       data: data,
       queryParameters: queryParameters,
@@ -82,14 +78,14 @@ class DioApiService implements ApiInterface {
   @override
   void setToken(String? token) {
     if (token == null || token.isEmpty) {
-      _dio.options.headers.remove('Authorization');
+      dio.options.headers.remove('Authorization');
     } else {
-      _dio.options.headers['Authorization'] = 'Bearer $token';
+      dio.options.headers['Authorization'] = 'Bearer $token';
     }
   }
 
   @override
   void clearToken() {
-    _dio.options.headers.remove('Authorization');
+    dio.options.headers.remove('Authorization');
   }
 }
