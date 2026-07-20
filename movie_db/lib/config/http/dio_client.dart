@@ -1,8 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:movie_db/config/http/api_interface.dart';
+import 'package:movie_db/config/http/tmdb_config.dart';
 
 class DioClient implements ApiInterface {
-  DioClient();
+  DioClient() {
+    dio.options.baseUrl = TmdbConfig.baseUrl;
+    dio.options.headers['Accept'] = 'application/json';
+  }
 
   final Dio dio = Dio();
 

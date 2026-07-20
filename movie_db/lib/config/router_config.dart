@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_db/features/movies/pages/movie_details.dart';
-import 'package:movie_db/features/movies/pages/movies_landing_page.dart';
+import 'package:movie_db/features/movies/presentation/pages/movie_details.dart';
+import 'package:movie_db/features/movies/presentation/pages/movies_landing_page.dart';
 
 
 class AppRoutes {
