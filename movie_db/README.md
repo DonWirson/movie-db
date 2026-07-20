@@ -5,6 +5,28 @@ Se utilizó Claude para hacer código repetitivo como generar eventos y estados 
 >   Se utiliza de forma granular, paso a paso en vez de enviar el módulo entero para que lo realice, se explica paso a paso con el componente específico que debe interactuar en cada paso, luego de eso se revisa que el código siga la estructura de proyecto y convención de nombres.
 
 
+## Cómo levantar el proyecto
+
+Este proyecto usa Flutter `3.44.6`.
+
+1.  Instalar/usar Flutter `3.44.6` (por ejemplo con FVM: `fvm use 3.44.6`).
+2.  Instalar las dependencias:
+    ```
+    flutter pub get
+    ```
+3.  Crear el archivo `.env` en la raíz del proyecto (mismo nivel que `pubspec.yaml`) con la API key de [The Movie Database](https://www.themoviedb.org/):
+    ```
+    API_KEY_MOVIE_DB=tu_api_key_aqui
+    ```
+4.  Correr el generador de código (envied genera `lib/config/env/env.g.dart` a partir del `.env`):
+    ```
+    dart run build_runner build --delete-conflicting-outputs
+    ```
+5.  Levantar la app:
+    ```
+    flutter run
+    ```
+
 Pendientes:
 
 *  Rellenar los tab de la vista de Home: 
