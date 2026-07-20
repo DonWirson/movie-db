@@ -12,7 +12,7 @@ class MoviesLandingPage extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            TopWatchedMovies(mostWatchedMovies: [1, 2, 3, 45]),
+            TopWatchedMovies(),
           ],
         ),
       ),

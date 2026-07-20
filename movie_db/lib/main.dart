@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movie_db/config/app_theme.dart';
+import 'package:movie_db/config/injection_container.dart';
 import 'package:movie_db/config/router_config.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDependencies();
   runApp(const MyApp());
 }
 
