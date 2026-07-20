@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Card de pelicula, utilizado para mostrar peliculas en toda la app
 class MovieCard extends StatelessWidget {
   static const double _width = 110;
   static const double _height = 200;
@@ -23,22 +24,26 @@ class MovieCard extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           if (rank != null)
-            Positioned(left: -20, bottom: -14, child: _RankNumber(rank: rank!)),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              movieUrl,
-              height: _height,
-              width: _width,
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, progress) {
-                if (progress == null) return child;
-                return _placeholder(child: const CircularProgressIndicator(strokeWidth: 2));
-              },
-              errorBuilder: (context, error, stackTrace) =>
-                  _placeholder(child: const Icon(Icons.movie, color: Colors.white54)),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                movieUrl,
+                height: _height,
+                width: _width,
+                fit: BoxFit.fitHeight,
+                loadingBuilder: (context, child, progress) {
+                  if (progress == null) return child;
+                  return _placeholder(
+                    child: const CircularProgressIndicator(strokeWidth: 2),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) => _placeholder(
+                  child: const Icon(Icons.movie, color: Colors.white54),
+                ),
+              ),
             ),
-          ),
+
+          Positioned(left: -5, bottom: -10, child: _RankNumber(rank: rank!)),
         ],
       ),
     );
@@ -65,7 +70,7 @@ class _RankNumber extends StatelessWidget {
     return Text(
       '$rank',
       style: const TextStyle(
-        fontSize: 84,
+        fontSize: 55,
         fontWeight: FontWeight.w900,
         fontStyle: FontStyle.italic,
         height: 1,

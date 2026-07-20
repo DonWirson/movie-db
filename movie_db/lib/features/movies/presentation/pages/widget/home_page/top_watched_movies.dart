@@ -18,7 +18,7 @@ class TopWatchedMovies extends StatelessWidget {
 }
 
 class _TopWatchedMoviesView extends StatelessWidget {
-  static const double _sectionHeight = 260;
+  static const double _sectionHeight = 200;
 
   const _TopWatchedMoviesView();
 
@@ -41,7 +41,7 @@ class _TopWatchedMoviesView extends StatelessWidget {
               clipBehavior: Clip.none,
               padding: const EdgeInsets.symmetric(horizontal: 24),
               itemCount: state.movies.length,
-              separatorBuilder: (context, index) => const SizedBox(width: 24),
+              separatorBuilder: (context, index) => const SizedBox(width: 5),
               itemBuilder: (context, index) {
                 final movie = state.movies[index];
                 return MovieCard(
