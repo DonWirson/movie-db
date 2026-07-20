@@ -1,5 +1,6 @@
 import 'package:movie_db/config/http/api_interface.dart';
 import 'package:movie_db/features/movies/data/models/movie.dart';
+import 'package:movie_db/features/movies/data/models/movie_details.dart';
 import 'package:movie_db/features/movies/data/models/paginated_response.dart';
 import 'package:movie_db/features/movies/data/models/trending_item.dart';
 import 'package:movie_db/features/movies/data/models/tv_show.dart';
@@ -54,5 +55,13 @@ class MovieService {
           .where((item) => item.mediaType != MediaType.person)
           .toList(),
     );
+  }
+
+  /// Detalles de una película específica.
+  Future<MovieDetails> getMovieDetails(int movieId) async {
+    final response = await apiClient.get<Map<String, dynamic>>(
+      '/movie/$movieId',
+    );
+    return MovieDetails.fromJson(response.data!);
   }
 }

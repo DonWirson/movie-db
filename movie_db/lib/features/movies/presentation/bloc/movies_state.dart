@@ -18,3 +18,17 @@ final class GotPopularMoviesFailed extends MoviesState {
 
   GotPopularMoviesFailed(this.message);
 }
+
+final class GotMovieDetailsInProgress extends MoviesState {}
+
+final class GotMovieDetailsSuccessful extends MoviesState {
+  final MovieDetails movieDetails;
+
+  GotMovieDetailsSuccessful({required this.movieDetails});
+}
+
+final class GotMovieDetailsFailed extends MoviesState {
+  final String message;
+
+  GotMovieDetailsFailed(this.message);
+}

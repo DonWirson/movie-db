@@ -4,3 +4,9 @@ part of 'movies_bloc.dart';
 sealed class MoviesEvent {}
 
 final class GotPopularMovies extends MoviesEvent {}
+
+final class GotMovieDetails extends MoviesEvent {
+  final int movieId;
+
+  GotMovieDetails({required this.movieId});
+}

@@ -8,43 +8,48 @@ class MovieCard extends StatelessWidget {
   final String movieUrl;
   final String movieName;
   final int? rank;
+  final VoidCallback? onTap;
 
   const MovieCard({
     super.key,
     required this.movieUrl,
     required this.movieName,
     this.rank,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
       label: movieName,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          if (rank != null)
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                movieUrl,
-                height: _height,
-                width: _width,
-                fit: BoxFit.fitHeight,
-                loadingBuilder: (context, child, progress) {
-                  if (progress == null) return child;
-                  return _placeholder(
-                    child: const CircularProgressIndicator(strokeWidth: 2),
-                  );
-                },
-                errorBuilder: (context, error, stackTrace) => _placeholder(
-                  child: const Icon(Icons.movie, color: Colors.white54),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            if (rank != null)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  movieUrl,
+                  height: _height,
+                  width: _width,
+                  fit: BoxFit.fitHeight,
+                  loadingBuilder: (context, child, progress) {
+                    if (progress == null) return child;
+                    return _placeholder(
+                      child: const CircularProgressIndicator(strokeWidth: 2),
+                    );
+                  },
+                  errorBuilder: (context, error, stackTrace) => _placeholder(
+                    child: const Icon(Icons.movie, color: Colors.white54),
+                  ),
                 ),
               ),
-            ),
 
-          Positioned(left: -5, bottom: -10, child: _RankNumber(rank: rank!)),
-        ],
+            Positioned(left: -5, bottom: -10, child: _RankNumber(rank: rank!)),
+          ],
+        ),
       ),
     );
   }

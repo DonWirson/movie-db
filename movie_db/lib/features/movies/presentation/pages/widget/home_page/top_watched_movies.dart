@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_db/config/http/tmdb_config.dart';
 import 'package:movie_db/config/injection_container.dart';
 import 'package:movie_db/features/movies/presentation/bloc/movies_bloc.dart';
@@ -50,6 +51,7 @@ class _TopWatchedMoviesView extends StatelessWidget {
                       : '${TmdbConfig.imageBaseUrl}${movie.posterPath}',
                   movieName: movie.title,
                   rank: index + 1,
+                  onTap: () => context.push('/details/${movie.id}'),
                 );
               },
             ),

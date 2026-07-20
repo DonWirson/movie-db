@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_db/features/movies/presentation/pages/movie_details.dart';
+import 'package:movie_db/features/movies/presentation/pages/movie_details_page.dart';
 import 'package:movie_db/features/movies/presentation/pages/movies_landing_page.dart';
 
 
@@ -17,9 +17,10 @@ static final GoRouter router = GoRouter(
 
       routes: <RouteBase>[
         GoRoute(
-          path: 'details',
+          path: 'details/:id',
           builder: (BuildContext context, GoRouterState state) {
-            return const MovieDetails();
+            final movieId = int.parse(state.pathParameters['id']!);
+            return MovieDetailsPage(movieId: movieId);
           },
         ),
       ],

@@ -28,7 +28,7 @@ class SearchInput extends StatelessWidget {
         suffixIcon: const Icon(Icons.search, color: Colors.white54),
         filled: true,
         fillColor: AppColors.searchInputColor,
-        contentPadding: const EdgeInsets.symmetric(vertical: 14),
+        contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 5),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide.none,
