@@ -10,3 +10,9 @@ final class GotMovieDetails extends MoviesEvent {
 
   GotMovieDetails({required this.movieId});
 }
+
+final class GotSearchedMovies extends MoviesEvent {
+  final String query;
+
+  GotSearchedMovies({required this.query});
+}

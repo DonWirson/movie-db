@@ -46,6 +46,7 @@ class _TopWatchedMoviesView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final movie = state.movies[index];
                 return MovieCard(
+                  movieId: movie.id,
                   movieUrl: movie.posterPath == null
                       ? ''
                       : '${TmdbConfig.imageBaseUrl}${movie.posterPath}',

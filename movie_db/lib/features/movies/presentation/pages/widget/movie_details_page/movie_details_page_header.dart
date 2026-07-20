@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_db/features/movies/presentation/pages/widget/movie_details_page/movie_details_page_circle_icon_button.dart';
+import 'package:movie_db/features/movies/presentation/pages/widget/movie_poster_hero_tag.dart';
 
 class MovieDetailsPageHeader extends StatelessWidget {
   static const double _backdropHeight = 220;
   static const double _posterWidth = 90;
   static const double _posterHeight = 130;
 
+  final int movieId;
   final String? backdropUrl;
   final String? posterUrl;
   final double rating;
 
   const MovieDetailsPageHeader({
     super.key,
+    required this.movieId,
     required this.backdropUrl,
     required this.posterUrl,
     required this.rating,
@@ -85,20 +88,23 @@ class MovieDetailsPageHeader extends StatelessWidget {
           Positioned(
             left: 24,
             bottom: 0,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: posterUrl == null
-                  ? Container(
-                      width: _posterWidth,
-                      height: _posterHeight,
-                      color: Colors.white10,
-                    )
-                  : Image.network(
-                      posterUrl!,
-                      width: _posterWidth,
-                      height: _posterHeight,
-                      fit: BoxFit.cover,
-                    ),
+            child: Hero(
+              tag: moviePosterHeroTag(movieId),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: posterUrl == null
+                    ? Container(
+                        width: _posterWidth,
+                        height: _posterHeight,
+                        color: Colors.white10,
+                      )
+                    : Image.network(
+                        posterUrl!,
+                        width: _posterWidth,
+                        height: _posterHeight,
+                        fit: BoxFit.cover,
+                      ),
+              ),
             ),
           ),
         ],

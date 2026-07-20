@@ -15,6 +15,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   MoviesBloc({required this.movieService}) : super(MoviesInitial()) {
     on<GotPopularMovies>(_onGotPopularMovies);
     on<GotMovieDetails>(_onGotMovieDetails);
+    on<GotSearchedMovies>(_onGotSearchedMovies);
   }
 
   Future<void> _onGotPopularMovies(
@@ -46,6 +47,25 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
       emit(
         GotMovieDetailsFailed('No se pudieron cargar los detalles de la película.'),
       );
+    }
+  }
+
+  Future<void> _onGotSearchedMovies(
+    GotSearchedMovies event,
+    Emitter<MoviesState> emit,
+  ) async {
+    final query = event.query.trim();
+    if (query.isEmpty) {
+      emit(MoviesInitial());
+      return;
+    }
+
+    emit(GotSearchedMoviesInProgress());
+    try {
+      final response = await movieService.searchMovies(query);
+      emit(GotSearchedMoviesSuccessful(movies: response.results));
+    } catch (_) {
+      emit(GotSearchedMoviesFailed('No se pudieron buscar las películas.'));
     }
   }
 }

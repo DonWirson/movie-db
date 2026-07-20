@@ -64,4 +64,13 @@ class MovieService {
     );
     return MovieDetails.fromJson(response.data!);
   }
+
+  /// Búsqueda de películas por nombre.
+  Future<PaginatedResponse<Movie>> searchMovies(String query) async {
+    final response = await apiClient.get<Map<String, dynamic>>(
+      '/search/movie',
+      queryParameters: {'query': query},
+    );
+    return PaginatedResponse.fromJson(response.data!, Movie.fromJson);
+  }
 }

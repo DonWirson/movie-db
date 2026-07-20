@@ -75,6 +75,7 @@ class _MovieDetailsContent extends StatelessWidget {
       child: Column(
         children: [
           MovieDetailsPageHeader(
+            movieId: movie.id,
             backdropUrl: backdropUrl,
             posterUrl: posterUrl,
             rating: movie.voteAverage,

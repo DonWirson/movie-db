@@ -32,3 +32,17 @@ final class GotMovieDetailsFailed extends MoviesState {
 
   GotMovieDetailsFailed(this.message);
 }
+
+final class GotSearchedMoviesInProgress extends MoviesState {}
+
+final class GotSearchedMoviesSuccessful extends MoviesState {
+  final List<Movie> movies;
+
+  GotSearchedMoviesSuccessful({required this.movies});
+}
+
+final class GotSearchedMoviesFailed extends MoviesState {
+  final String message;
+
+  GotSearchedMoviesFailed(this.message);
+}

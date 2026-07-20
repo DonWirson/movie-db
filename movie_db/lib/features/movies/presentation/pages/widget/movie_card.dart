@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movie_db/features/movies/presentation/pages/widget/movie_poster_hero_tag.dart';
 
 //Card de pelicula, utilizado para mostrar peliculas en toda la app
 class MovieCard extends StatelessWidget {
   static const double _width = 110;
   static const double _height = 200;
 
+  final int movieId;
   final String movieUrl;
   final String movieName;
   final int? rank;
@@ -12,6 +14,7 @@ class MovieCard extends StatelessWidget {
 
   const MovieCard({
     super.key,
+    required this.movieId,
     required this.movieUrl,
     required this.movieName,
     this.rank,
@@ -27,8 +30,9 @@ class MovieCard extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            if (rank != null)
-              ClipRRect(
+            Hero(
+              tag: moviePosterHeroTag(movieId),
+              child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.network(
                   movieUrl,
@@ -46,8 +50,10 @@ class MovieCard extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
 
-            Positioned(left: -5, bottom: -10, child: _RankNumber(rank: rank!)),
+            if (rank != null)
+              Positioned(left: -5, bottom: -10, child: _RankNumber(rank: rank!)),
           ],
         ),
       ),
