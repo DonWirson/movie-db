@@ -14,7 +14,7 @@ Este proyecto usa Flutter `3.44.6`.
     ```
     flutter pub get
     ```
-3.  Crear el archivo `.env` en la raíz del proyecto (mismo nivel que `pubspec.yaml`) con la API key de [The Movie Database](https://www.themoviedb.org/):
+3.  Crear el archivo `.env` en la raíz del proyecto (mismo nivel que `pubspec.yaml`) a partir de [.env_example](.env_example), y completar con la API key de [The Movie Database](https://www.themoviedb.org/):
     ```
     API_KEY_MOVIE_DB=tu_api_key_aqui
     ```
